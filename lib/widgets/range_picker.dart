@@ -1,6 +1,5 @@
-import 'package:bottom_picker/cupertino/cupertino_date_picker.dart';
 import 'package:bottom_picker/widgets/date_picker.dart';
-import 'package:flutter/cupertino.dart' hide SelectionOverlayBuilder;
+import 'package:flutter/cupertino.dart';
 
 class RangePicker extends StatefulWidget {
   final Function(DateTime) onFirstDateChanged;
@@ -19,7 +18,6 @@ class RangePicker extends StatefulWidget {
   final double? itemExtent;
   final bool showTimeSeperator;
   final CupertinoTextThemeData? pickerThemeData;
-  final SelectionOverlayBuilder? selectionOverlayBuilder;
 
   const RangePicker({
     super.key,
@@ -39,7 +37,6 @@ class RangePicker extends StatefulWidget {
     this.itemExtent,
     this.showTimeSeperator = false,
     this.pickerThemeData,
-    this.selectionOverlayBuilder,
   });
 
   @override
@@ -110,7 +107,6 @@ class _RangePickerState extends State<RangePicker> {
             dateOrder: widget.dateOrder,
             textStyle: widget.textStyle,
             pickerThemeData: widget.pickerThemeData,
-            selectionOverlayBuilder: widget.selectionOverlayBuilder,
           ),
         ),
         Expanded(
@@ -128,7 +124,6 @@ class _RangePickerState extends State<RangePicker> {
             itemExtent: widget.itemExtent,
             showTimeSeparator: widget.showTimeSeperator,
             pickerThemeData: widget.pickerThemeData,
-            selectionOverlayBuilder: widget.selectionOverlayBuilder,
           ),
         ),
       ],

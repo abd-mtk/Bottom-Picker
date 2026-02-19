@@ -10,7 +10,7 @@ import 'package:bottom_picker/widgets/range_picker.dart';
 import 'package:bottom_picker/widgets/simple_picker.dart';
 import 'package:bottom_picker/widgets/time_picker.dart';
 import 'package:bottom_picker/widgets/year_picker.dart';
-import 'package:flutter/cupertino.dart' hide SelectionOverlayBuilder;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -47,7 +47,6 @@ class BottomPicker extends StatefulWidget {
     this.onCloseButtonPressed,
     this.selectedItemIndex = 0,
     this.backgroundColor = Colors.white,
-    this.barrierColor,
     this.pickerThemeData,
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
@@ -65,8 +64,6 @@ class BottomPicker extends StatefulWidget {
     this.headerBuilder,
     this.buttonBuilder,
     this.diameterRatio = 1.1,
-    this.borderRadius = 20,
-    this.dateTimeSelectionOverlayBuilder,
     this.useSafeArea = false,
   }) {
     dateOrder = null;
@@ -94,7 +91,6 @@ class BottomPicker extends StatefulWidget {
     this.minDateTime,
     this.maxDateTime,
     this.backgroundColor = Colors.white,
-    this.barrierColor,
     this.dateOrder = DatePickerDateOrder.ymd,
     this.pickerThemeData,
     this.pickerTextStyle = const TextStyle(
@@ -113,8 +109,6 @@ class BottomPicker extends StatefulWidget {
     this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
-    this.borderRadius = 20,
-    this.dateTimeSelectionOverlayBuilder,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.date;
@@ -135,13 +129,10 @@ class BottomPicker extends StatefulWidget {
     this.minDateTime,
     this.maxDateTime,
     this.backgroundColor = Colors.white,
-    this.barrierColor,
     this.pickerThemeData,
     this.height,
     this.itemExtent = 35.0,
     this.diameterRatio = 1.1,
-    this.borderRadius = 20,
-    this.dateTimeSelectionOverlayBuilder,
     this.headerBuilder,
     this.buttonBuilder,
     this.useSafeArea = false,
@@ -169,7 +160,6 @@ class BottomPicker extends StatefulWidget {
     this.minDateTime,
     this.maxDateTime,
     this.backgroundColor = Colors.white,
-    this.barrierColor,
     this.pickerThemeData,
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
@@ -187,8 +177,6 @@ class BottomPicker extends StatefulWidget {
     this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
-    this.borderRadius = 20,
-    this.dateTimeSelectionOverlayBuilder,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.monthYear;
@@ -216,7 +204,6 @@ class BottomPicker extends StatefulWidget {
     this.maxDateTime,
     this.use24hFormat = false,
     this.backgroundColor = Colors.white,
-    this.barrierColor,
     this.dateOrder = DatePickerDateOrder.ymd,
     this.pickerThemeData,
     this.pickerTextStyle = const TextStyle(
@@ -237,8 +224,6 @@ class BottomPicker extends StatefulWidget {
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
     this.hourPredicate,
-    this.borderRadius = 20,
-    this.dateTimeSelectionOverlayBuilder,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.dateAndTime;
@@ -264,7 +249,6 @@ class BottomPicker extends StatefulWidget {
     this.minuteInterval = 1,
     this.use24hFormat = false,
     this.backgroundColor = Colors.white,
-    this.barrierColor,
     this.pickerThemeData,
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
@@ -283,8 +267,6 @@ class BottomPicker extends StatefulWidget {
     this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
-    this.borderRadius = 20,
-    this.dateTimeSelectionOverlayBuilder,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.time;
@@ -312,7 +294,6 @@ class BottomPicker extends StatefulWidget {
     this.onCloseButtonPressed,
     this.minuteInterval = 1,
     this.backgroundColor = Colors.white,
-    this.barrierColor,
     this.pickerThemeData,
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
@@ -329,8 +310,6 @@ class BottomPicker extends StatefulWidget {
     this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
-    this.borderRadius = 20,
-    this.dateTimeSelectionOverlayBuilder,
     this.useSafeArea = false,
   }) {
     dateOrder = null;
@@ -352,7 +331,6 @@ class BottomPicker extends StatefulWidget {
     this.dismissable = false,
     this.onCloseButtonPressed,
     this.backgroundColor = Colors.white,
-    this.barrierColor,
     this.pickerThemeData,
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
@@ -377,8 +355,6 @@ class BottomPicker extends StatefulWidget {
     this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
-    this.borderRadius = 20,
-    this.dateTimeSelectionOverlayBuilder,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.date;
@@ -414,7 +390,6 @@ class BottomPicker extends StatefulWidget {
     this.dismissable = false,
     this.onCloseButtonPressed,
     this.backgroundColor = Colors.white,
-    this.barrierColor,
     this.pickerThemeData,
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
@@ -440,8 +415,6 @@ class BottomPicker extends StatefulWidget {
     this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
-    this.borderRadius = 20,
-    this.dateTimeSelectionOverlayBuilder,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.time;
@@ -573,11 +546,6 @@ class BottomPicker extends StatefulWidget {
   ///
   final Color backgroundColor;
 
-  ///the background color behind the bottom picker (modal barrier).
-  ///if null, the theme default barrier color is used.
-  ///
-  final Color? barrierColor;
-
   ///date order applied on date picker or date time picker
   ///by default it's YYYY/MM/DD
   DatePickerDateOrder? dateOrder;
@@ -658,11 +626,6 @@ class BottomPicker extends StatefulWidget {
   /// wheel.
   Widget? selectionOverlay;
 
-  /// A builder to customize the selection overlay for date/time pickers.
-  /// This allows customizing the shape (e.g. corner radius) and color of
-  /// the grey bar behind the selected date/time row.
-  final SelectionOverlayBuilder? dateTimeSelectionOverlayBuilder;
-
   /// Invoked when pressing on the submit button when using range picker
   /// it return two dates (first time, end time)
   /// required when using [BottomPicker.rangeTime]
@@ -711,10 +674,6 @@ class BottomPicker extends StatefulWidget {
   /// The bottom picker selector diameter ratio.
   final double diameterRatio;
 
-  /// The corner radius of the top of the bottom picker container.
-  /// By default it's 20.
-  final double borderRadius;
-
   /// A predicate that can be used to select which hours are selectable.
   SelectableHourPredicate? hourPredicate;
 
@@ -729,7 +688,6 @@ class BottomPicker extends StatefulWidget {
       context: context,
       isDismissible: dismissable,
       enableDrag: false,
-      barrierColor: barrierColor,
       constraints: BoxConstraints(
         maxWidth: context.bottomPickerWidth,
       ),
@@ -826,9 +784,9 @@ class BottomPickerState extends State<BottomPicker> {
       height: widget.height ?? context.bottomPickerHeight,
       decoration: BoxDecoration(
         color: widget.backgroundColor,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(widget.borderRadius),
-          topLeft: Radius.circular(widget.borderRadius),
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(20),
+          topLeft: Radius.circular(20),
         ),
       ),
       child: Padding(
@@ -923,8 +881,6 @@ class BottomPickerState extends State<BottomPicker> {
                               itemExtent: widget.itemExtent,
                               showTimeSeparator: widget.showTimeSeparator,
                               pickerThemeData: widget.pickerThemeData,
-                              selectionOverlayBuilder:
-                                  widget.dateTimeSelectionOverlayBuilder,
                             )
                           : widget.bottomPickerType == BottomPickerType.dateTime
                               ? DatePicker(
@@ -944,8 +900,6 @@ class BottomPickerState extends State<BottomPicker> {
                                   showTimeSeparator: widget.showTimeSeparator,
                                   pickerThemeData: widget.pickerThemeData,
                                   hourPredicate: widget.hourPredicate,
-                                  selectionOverlayBuilder:
-                                      widget.dateTimeSelectionOverlayBuilder,
                                 )
                               : widget.bottomPickerType == BottomPickerType.year
                                   ? BottomYearDatePicker(
@@ -987,8 +941,6 @@ class BottomPickerState extends State<BottomPicker> {
                                               widget.showTimeSeparator,
                                           pickerThemeData:
                                               widget.pickerThemeData,
-                                          selectionOverlayBuilder: widget
-                                              .dateTimeSelectionOverlayBuilder,
                                         )
                                       : RangePicker(
                                           mode: CupertinoDatePickerMode.date,
@@ -1015,8 +967,6 @@ class BottomPickerState extends State<BottomPicker> {
                                               widget.showTimeSeparator,
                                           pickerThemeData:
                                               widget.pickerThemeData,
-                                          selectionOverlayBuilder: widget
-                                              .dateTimeSelectionOverlayBuilder,
                                         ),
             ),
             if (widget.buttonBuilder != null)
