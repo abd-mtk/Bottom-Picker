@@ -1,5 +1,5 @@
 import 'package:bottom_picker/cupertino/cupertino_date_picker.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart' hide SelectionOverlayBuilder;
 
 class DatePicker extends StatelessWidget {
   final CupertinoDatePickerMode mode;
@@ -16,6 +16,7 @@ class DatePicker extends StatelessWidget {
   final List<int> calendarDays;
   final CupertinoTextThemeData? pickerThemeData;
   final SelectableHourPredicate? hourPredicate;
+  final SelectionOverlayBuilder? selectionOverlayBuilder;
 
   const DatePicker({
     super.key,
@@ -33,6 +34,7 @@ class DatePicker extends StatelessWidget {
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.pickerThemeData,
     this.hourPredicate,
+    this.selectionOverlayBuilder,
   });
 
   @override
@@ -57,6 +59,7 @@ class DatePicker extends StatelessWidget {
         use24hFormat: use24hFormat,
         dateOrder: dateOrder,
         calendarDays: calendarDays,
+        selectionOverlayBuilder: selectionOverlayBuilder,
       ),
     );
   }
