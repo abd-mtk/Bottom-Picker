@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:bottom_picker/cupertino/cupertino_date_picker.dart';
 import 'package:bottom_picker/resources/arrays.dart';
 import 'package:bottom_picker/resources/context_extension.dart';
 import 'package:bottom_picker/resources/extensions.dart';
 import 'package:bottom_picker/resources/time.dart';
-import 'package:bottom_picker/widgets/bottom_picker_button.dart';
 import 'package:bottom_picker/widgets/close_icon.dart';
 import 'package:bottom_picker/widgets/date_picker.dart';
 import 'package:bottom_picker/widgets/range_picker.dart';
@@ -37,47 +35,37 @@ class BottomPicker extends StatefulWidget {
 
   BottomPicker({
     super.key,
-    @Deprecated('should use headerBuilder instead') this.pickerTitle,
-    @Deprecated('should use headerBuilder instead') this.pickerDescription,
+    this.pickerTitle,
+    this.pickerDescription,
     required this.items,
-    @Deprecated('should use headerBuilder instead') this.titleAlignment,
-    @Deprecated('should use headerBuilder instead')
+    this.titleAlignment,
     this.titlePadding = const EdgeInsets.all(0),
     this.dismissable = false,
     this.onChange,
     this.onSubmit,
     this.onDismiss,
-    @Deprecated('should use headerBuilder instead') this.onCloseButtonPressed,
-    this.bottomPickerTheme = BottomPickerTheme.blue,
-    this.gradientColors,
+    this.onCloseButtonPressed,
     this.selectedItemIndex = 0,
-    this.buttonPadding,
-    this.buttonWidth,
-    this.buttonSingleColor,
     this.backgroundColor = Colors.white,
+    this.barrierColor,
     this.pickerThemeData,
-    @Deprecated('should use pickerThemeData instead')
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
       color: Colors.black,
     ),
     this.itemExtent = 35.0,
-    @Deprecated('should use headerBuilder instead')
     this.displayCloseIcon = true,
-    @Deprecated('should use headerBuilder instead')
     this.closeIconColor = Colors.black,
-    @Deprecated('should use headerBuilder instead') this.closeIconSize = 20,
+    this.closeIconSize = 20,
     this.layoutOrientation = TextDirection.ltr,
-    this.buttonAlignment = MainAxisAlignment.center,
     this.height,
-    this.displaySubmitButton = true,
     this.selectionOverlay,
-    this.buttonContent,
-    this.buttonStyle,
-    @Deprecated('should use headerBuilder instead') this.closeWidget,
+    this.closeWidget,
     this.closeOnSubmit = true,
     this.headerBuilder,
+    this.buttonBuilder,
     this.diameterRatio = 1.1,
+    this.borderRadius = 20,
     this.useSafeArea = false,
   }) {
     dateOrder = null;
@@ -92,49 +80,39 @@ class BottomPicker extends StatefulWidget {
 
   BottomPicker.date({
     super.key,
-    @Deprecated('should use headerBuilder instead') this.pickerTitle,
-    @Deprecated('should use headerBuilder instead') this.pickerDescription,
-    @Deprecated('should use headerBuilder instead')
+    this.pickerTitle,
+    this.pickerDescription,
     this.titlePadding = const EdgeInsets.all(0),
-    @Deprecated('should use headerBuilder instead') this.titleAlignment,
+    this.titleAlignment,
     this.dismissable = false,
     this.onChange,
     this.onSubmit,
     this.onDismiss,
-    @Deprecated('should use headerBuilder instead') this.onCloseButtonPressed,
-    this.bottomPickerTheme = BottomPickerTheme.blue,
-    this.gradientColors,
+    this.onCloseButtonPressed,
     this.initialDateTime,
     this.minDateTime,
     this.maxDateTime,
-    this.buttonPadding,
-    this.buttonWidth,
-    this.buttonSingleColor,
     this.backgroundColor = Colors.white,
+    this.barrierColor,
     this.dateOrder = DatePickerDateOrder.ymd,
     this.pickerThemeData,
-    @Deprecated('should use pickerThemeData instead')
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
       color: Colors.black,
     ),
-    @Deprecated('should use headerBuilder instead')
     this.displayCloseIcon = true,
-    @Deprecated('should use headerBuilder instead')
     this.closeIconColor = Colors.black,
-    @Deprecated('should use headerBuilder instead') this.closeIconSize = 20,
+    this.closeIconSize = 20,
     this.layoutOrientation = TextDirection.ltr,
-    this.buttonAlignment = MainAxisAlignment.center,
     this.height,
-    this.displaySubmitButton = true,
-    this.buttonContent,
-    this.buttonStyle,
     this.itemExtent = 35.0,
-    @Deprecated('should use headerBuilder instead') this.closeWidget,
+    this.closeWidget,
     this.closeOnSubmit = true,
     this.headerBuilder,
+    this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
+    this.borderRadius = 20,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.date;
@@ -151,24 +129,18 @@ class BottomPicker extends StatefulWidget {
     this.onChange,
     this.onSubmit,
     this.onDismiss,
-    this.bottomPickerTheme = BottomPickerTheme.blue,
-    this.gradientColors,
     this.initialDateTime,
     this.minDateTime,
     this.maxDateTime,
-    this.buttonPadding,
-    this.buttonWidth,
-    this.buttonSingleColor,
     this.backgroundColor = Colors.white,
+    this.barrierColor,
     this.pickerThemeData,
-    this.buttonAlignment = MainAxisAlignment.center,
     this.height,
-    this.displaySubmitButton = true,
-    this.buttonContent,
-    this.buttonStyle,
     this.itemExtent = 35.0,
     this.diameterRatio = 1.1,
+    this.borderRadius = 20,
     this.headerBuilder,
+    this.buttonBuilder,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.date;
@@ -181,48 +153,38 @@ class BottomPicker extends StatefulWidget {
 
   BottomPicker.monthYear({
     super.key,
-    @Deprecated('should use headerBuilder instead') this.pickerTitle,
-    @Deprecated('should use headerBuilder instead') this.pickerDescription,
-    @Deprecated('should use headerBuilder instead')
+    this.pickerTitle,
+    this.pickerDescription,
     this.titlePadding = const EdgeInsets.all(0),
-    @Deprecated('should use headerBuilder instead') this.titleAlignment,
+    this.titleAlignment,
     this.dismissable = false,
     this.onChange,
     this.onSubmit,
     this.onDismiss,
-    @Deprecated('should use headerBuilder instead') this.onCloseButtonPressed,
-    this.bottomPickerTheme = BottomPickerTheme.blue,
-    this.gradientColors,
+    this.onCloseButtonPressed,
     this.initialDateTime,
     this.minDateTime,
     this.maxDateTime,
-    this.buttonPadding,
-    this.buttonWidth,
-    this.buttonSingleColor,
     this.backgroundColor = Colors.white,
+    this.barrierColor,
     this.pickerThemeData,
-    @Deprecated('should use pickerThemeData instead')
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
       color: Colors.black,
     ),
-    @Deprecated('should use headerBuilder instead')
     this.displayCloseIcon = true,
-    @Deprecated('should use headerBuilder instead')
     this.closeIconColor = Colors.black,
-    @Deprecated('should use headerBuilder instead') this.closeIconSize = 20,
+    this.closeIconSize = 20,
     this.layoutOrientation = TextDirection.ltr,
-    this.buttonAlignment = MainAxisAlignment.center,
     this.height,
-    this.displaySubmitButton = true,
-    this.buttonContent,
-    this.buttonStyle,
     this.itemExtent = 35.0,
-    @Deprecated('should use headerBuilder instead') this.closeWidget,
+    this.closeWidget,
     this.closeOnSubmit = true,
     this.headerBuilder,
+    this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
+    this.borderRadius = 20,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.monthYear;
@@ -235,53 +197,43 @@ class BottomPicker extends StatefulWidget {
 
   BottomPicker.dateTime({
     super.key,
-    @Deprecated('should use headerBuilder instead') this.pickerTitle,
-    @Deprecated('should use headerBuilder instead') this.pickerDescription,
-    @Deprecated('should use headerBuilder instead')
+    this.pickerTitle,
+    this.pickerDescription,
     this.titlePadding = const EdgeInsets.all(0),
-    @Deprecated('should use headerBuilder instead') this.titleAlignment,
+    this.titleAlignment,
     this.dismissable = false,
     this.onChange,
     this.onSubmit,
     this.onDismiss,
-    @Deprecated('should use headerBuilder instead') this.onCloseButtonPressed,
-    this.bottomPickerTheme = BottomPickerTheme.blue,
-    this.gradientColors,
+    this.onCloseButtonPressed,
     this.initialDateTime,
     this.minuteInterval = 1,
     this.minDateTime,
     this.maxDateTime,
     this.use24hFormat = false,
-    this.buttonPadding,
-    this.buttonWidth,
-    this.buttonSingleColor,
     this.backgroundColor = Colors.white,
+    this.barrierColor,
     this.dateOrder = DatePickerDateOrder.ymd,
     this.pickerThemeData,
-    @Deprecated('should use pickerThemeData instead')
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
       color: Colors.black,
     ),
-    @Deprecated('should use headerBuilder instead')
     this.displayCloseIcon = true,
-    @Deprecated('should use headerBuilder instead')
     this.closeIconColor = Colors.black,
-    @Deprecated('should use headerBuilder instead') this.closeIconSize = 20,
+    this.closeIconSize = 20,
     this.layoutOrientation = TextDirection.ltr,
-    this.buttonAlignment = MainAxisAlignment.center,
     this.height,
-    this.displaySubmitButton = true,
-    this.buttonContent,
-    this.buttonStyle,
     this.itemExtent = 30,
     this.showTimeSeparator = false,
-    @Deprecated('should use headerBuilder instead') this.closeWidget,
+    this.closeWidget,
     this.closeOnSubmit = true,
     this.headerBuilder,
+    this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
     this.hourPredicate,
+    this.borderRadius = 20,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.dateAndTime;
@@ -292,51 +244,41 @@ class BottomPicker extends StatefulWidget {
 
   BottomPicker.time({
     super.key,
-    @Deprecated('should use headerBuilder instead') this.pickerTitle,
-    @Deprecated('should use headerBuilder instead') this.pickerDescription,
+    this.pickerTitle,
+    this.pickerDescription,
     required this.initialTime,
     this.maxTime,
     this.minTime,
-    @Deprecated('should use headerBuilder instead')
     this.titlePadding = const EdgeInsets.all(0),
-    @Deprecated('should use headerBuilder instead') this.titleAlignment,
+    this.titleAlignment,
     this.dismissable = false,
     this.onChange,
     this.onSubmit,
     this.onDismiss,
-    @Deprecated('should use headerBuilder instead') this.onCloseButtonPressed,
-    this.bottomPickerTheme = BottomPickerTheme.blue,
-    this.gradientColors,
+    this.onCloseButtonPressed,
     this.minuteInterval = 1,
     this.use24hFormat = false,
-    this.buttonPadding,
-    this.buttonWidth,
-    this.buttonSingleColor,
     this.backgroundColor = Colors.white,
+    this.barrierColor,
     this.pickerThemeData,
-    @Deprecated('should use pickerThemeData instead')
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
       color: Colors.black,
     ),
-    @Deprecated('should use headerBuilder instead')
     this.displayCloseIcon = true,
-    @Deprecated('should use headerBuilder instead')
     this.closeIconColor = Colors.black,
-    @Deprecated('should use headerBuilder instead') this.closeIconSize = 20,
+    this.closeIconSize = 20,
     this.layoutOrientation = TextDirection.ltr,
-    this.buttonAlignment = MainAxisAlignment.center,
     this.height,
-    this.displaySubmitButton = true,
-    this.buttonContent,
-    this.buttonStyle,
     this.showTimeSeparator = false,
     this.itemExtent = 30,
-    @Deprecated('should use headerBuilder instead') this.closeWidget,
+    this.closeWidget,
     this.closeOnSubmit = true,
     this.headerBuilder,
+    this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
+    this.borderRadius = 20,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.time;
@@ -349,49 +291,39 @@ class BottomPicker extends StatefulWidget {
 
   BottomPicker.timer({
     super.key,
-    @Deprecated('should use headerBuilder instead') this.pickerTitle,
+    this.pickerTitle,
     this.timerPickerMode = CupertinoTimerPickerMode.hm,
     this.timerSecondsInterval = 1,
-    @Deprecated('should use headerBuilder instead') this.pickerDescription,
+    this.pickerDescription,
     this.initialTimerDuration,
-    @Deprecated('should use headerBuilder instead')
     this.titlePadding = const EdgeInsets.all(0),
-    @Deprecated('should use headerBuilder instead') this.titleAlignment,
+    this.titleAlignment,
     this.dismissable = false,
     this.onChange,
     this.onSubmit,
     this.onDismiss,
     this.itemExtent = 30,
-    @Deprecated('should use headerBuilder instead') this.onCloseButtonPressed,
-    this.bottomPickerTheme = BottomPickerTheme.blue,
-    this.gradientColors,
+    this.onCloseButtonPressed,
     this.minuteInterval = 1,
-    this.buttonPadding,
-    this.buttonWidth,
-    this.buttonSingleColor,
     this.backgroundColor = Colors.white,
+    this.barrierColor,
     this.pickerThemeData,
-    @Deprecated('should use pickerThemeData instead')
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
       color: Colors.black,
     ),
-    @Deprecated('should use headerBuilder instead')
     this.displayCloseIcon = true,
-    @Deprecated('should use headerBuilder instead')
     this.closeIconColor = Colors.black,
-    @Deprecated('should use headerBuilder instead') this.closeIconSize = 20,
+    this.closeIconSize = 20,
     this.layoutOrientation = TextDirection.ltr,
-    this.buttonAlignment = MainAxisAlignment.center,
     this.height,
-    this.displaySubmitButton = true,
-    this.buttonContent,
-    this.buttonStyle,
-    @Deprecated('should use headerBuilder instead') this.closeWidget,
+    this.closeWidget,
     this.closeOnSubmit = true,
     this.headerBuilder,
+    this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
+    this.borderRadius = 20,
     this.useSafeArea = false,
   }) {
     dateOrder = null;
@@ -404,34 +336,25 @@ class BottomPicker extends StatefulWidget {
 
   BottomPicker.range({
     super.key,
-    @Deprecated('should use headerBuilder instead') this.pickerTitle,
-    @Deprecated('should use headerBuilder instead') this.pickerDescription,
+    this.pickerTitle,
+    this.pickerDescription,
     required this.onRangeDateSubmitPressed,
     this.onRangePickerDismissed,
-    @Deprecated('should use headerBuilder instead')
     this.titlePadding = const EdgeInsets.all(0),
-    @Deprecated('should use headerBuilder instead') this.titleAlignment,
+    this.titleAlignment,
     this.dismissable = false,
-    @Deprecated('should use headerBuilder instead') this.onCloseButtonPressed,
-    this.bottomPickerTheme = BottomPickerTheme.blue,
-    this.gradientColors,
-    this.buttonPadding,
-    this.buttonWidth,
-    this.buttonSingleColor,
+    this.onCloseButtonPressed,
     this.backgroundColor = Colors.white,
+    this.barrierColor,
     this.pickerThemeData,
-    @Deprecated('should use pickerThemeData instead')
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
       color: Colors.black,
     ),
-    @Deprecated('should use headerBuilder instead')
     this.displayCloseIcon = true,
-    @Deprecated('should use headerBuilder instead')
     this.closeIconColor = Colors.black,
-    @Deprecated('should use headerBuilder instead') this.closeIconSize = 20,
+    this.closeIconSize = 20,
     this.layoutOrientation = TextDirection.ltr,
-    this.buttonAlignment = MainAxisAlignment.center,
     this.height,
     this.initialSecondDate,
     this.initialFirstDate,
@@ -440,14 +363,14 @@ class BottomPicker extends StatefulWidget {
     this.maxFirstDate,
     this.maxSecondDate,
     this.dateOrder = DatePickerDateOrder.ymd,
-    this.buttonContent,
-    this.buttonStyle,
     this.itemExtent = 30,
-    @Deprecated('should use headerBuilder instead') this.closeWidget,
+    this.closeWidget,
     this.closeOnSubmit = true,
     this.headerBuilder,
+    this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
+    this.borderRadius = 20,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.date;
@@ -456,7 +379,6 @@ class BottomPicker extends StatefulWidget {
     onChange = null;
     onSubmit = null;
     onDismiss = null;
-    displaySubmitButton = true;
     use24hFormat = true;
     assert(onRangeDateSubmitPressed != null);
     assertInitialValues();
@@ -474,35 +396,26 @@ class BottomPicker extends StatefulWidget {
 
   BottomPicker.rangeTime({
     super.key,
-    @Deprecated('should use headerBuilder instead') this.pickerTitle,
-    @Deprecated('should use headerBuilder instead') this.pickerDescription,
+    this.pickerTitle,
+    this.pickerDescription,
     required this.onRangeTimeSubmitPressed,
     this.onRangePickerDismissed,
     this.use24hFormat = true,
-    @Deprecated('should use headerBuilder instead')
     this.titlePadding = const EdgeInsets.all(0),
-    @Deprecated('should use headerBuilder instead') this.titleAlignment,
+    this.titleAlignment,
     this.dismissable = false,
-    @Deprecated('should use headerBuilder instead') this.onCloseButtonPressed,
-    this.bottomPickerTheme = BottomPickerTheme.blue,
-    this.gradientColors,
-    this.buttonPadding,
-    this.buttonWidth,
-    this.buttonSingleColor,
+    this.onCloseButtonPressed,
     this.backgroundColor = Colors.white,
+    this.barrierColor,
     this.pickerThemeData,
-    @Deprecated('should use pickerThemeData instead')
     this.pickerTextStyle = const TextStyle(
       fontSize: 14,
       color: Colors.black,
     ),
-    @Deprecated('should use headerBuilder instead')
     this.displayCloseIcon = true,
-    @Deprecated('should use headerBuilder instead')
     this.closeIconColor = Colors.black,
-    @Deprecated('should use headerBuilder instead') this.closeIconSize = 20,
+    this.closeIconSize = 20,
     this.layoutOrientation = TextDirection.ltr,
-    this.buttonAlignment = MainAxisAlignment.center,
     this.height,
     this.initialSecondTime,
     this.initialFirstTime,
@@ -510,16 +423,16 @@ class BottomPicker extends StatefulWidget {
     this.minSecondTime,
     this.maxFirstTime,
     this.maxSecondTime,
-    this.buttonContent,
-    this.buttonStyle,
     this.minuteInterval = 1,
     this.showTimeSeparator = false,
     this.itemExtent = 30,
-    @Deprecated('should use headerBuilder instead') this.closeWidget,
+    this.closeWidget,
     this.closeOnSubmit = true,
     this.headerBuilder,
+    this.buttonBuilder,
     this.calendarDays = CupertinoDatePickerWidget.fullWeek,
     this.diameterRatio = 1.1,
+    this.borderRadius = 20,
     this.useSafeArea = false,
   }) {
     datePickerMode = CupertinoDatePickerMode.time;
@@ -528,7 +441,6 @@ class BottomPicker extends StatefulWidget {
     onChange = null;
     onSubmit = null;
     onDismiss = null;
-    displaySubmitButton = true;
     assert(onRangeTimeSubmitPressed != null);
     assertInitialValues();
     if (minSecondTime != null && initialSecondTime != null) {
@@ -544,6 +456,12 @@ class BottomPicker extends StatefulWidget {
 
   /// Renders the header component of the bottom picker
   final Widget Function(BuildContext context)? headerBuilder;
+
+  /// Renders the submit button component of the bottom picker
+  /// Receives a callback function that should be called when the button is pressed
+  /// If null, no button will be displayed
+  final Widget Function(BuildContext context, VoidCallback onSubmit)?
+      buttonBuilder;
 
   ///Bottom picker description widget
   Widget? pickerDescription;
@@ -586,20 +504,6 @@ class BottomPicker extends StatefulWidget {
   ///Invoked when clicking on the close button
   ///
   Function? onCloseButtonPressed;
-
-  ///set the theme of the bottom picker (the button theme)
-  ///possible values
-  ///```
-  ///{
-  ///blue,
-  ///orange,
-  ///temptingAzure,
-  ///heavyRain,
-  ///plumPlate,
-  ///morningSalad
-  ///}
-  ///```
-  final BottomPickerTheme bottomPickerTheme;
 
   ///used for simple bottom picker
   ///by default it's 0, needs to be in the range [0, this.items.length-1]
@@ -655,18 +559,15 @@ class BottomPicker extends StatefulWidget {
   ///
   late bool use24hFormat;
 
-  ///the padding that will be applied to the button
-  ///if the padding is null the button will be rendered null
-  final double? buttonPadding;
-
-  ///the width that will be applied to the button
-  ///if the buttonWidth is null the button will be rendered with null
-  final double? buttonWidth;
-
   ///the bottom picker background color,
   ///by default it's white
   ///
   final Color backgroundColor;
+
+  ///the background color behind the bottom picker (modal barrier).
+  ///if null, the theme default barrier color is used.
+  ///
+  final Color? barrierColor;
 
   ///date order applied on date picker or date time picker
   ///by default it's YYYY/MM/DD
@@ -709,10 +610,6 @@ class BottomPicker extends StatefulWidget {
   ///```
   TextDirection? layoutOrientation;
 
-  ///THe alignment of the bottom picker button
-  ///by default it's `MainAxisAlignment.center`
-  final MainAxisAlignment buttonAlignment;
-
   ///bottom picker main widget height
   ///if it's null the bottom picker will get the height from
   ///[bottomPickerHeight] extension on context
@@ -751,27 +648,6 @@ class BottomPicker extends StatefulWidget {
   /// The [selectionOverlay] widget drawn above the [CupertinoPicker]'s picker
   /// wheel.
   Widget? selectionOverlay;
-
-  ///The button's widget that will be displayed
-  ///if null the button will have a simple 'Select' text in the center
-  final Widget? buttonContent;
-
-  ///indicates if the submit button will be displayed or not
-  ///by default the submit button is shown
-  late bool displaySubmitButton;
-
-  ///a single color will be applied to the button instead of the gradient
-  ///themes
-  ///
-  final Color? buttonSingleColor;
-
-  ///to set a custom button theme color use this list
-  ///when it's not null it will be applied
-  ///
-  final List<Color>? gradientColors;
-
-  /// The style that will be applied on the button's widget
-  final BoxDecoration? buttonStyle;
 
   /// Invoked when pressing on the submit button when using range picker
   /// it return two dates (first time, end time)
@@ -821,6 +697,10 @@ class BottomPicker extends StatefulWidget {
   /// The bottom picker selector diameter ratio.
   final double diameterRatio;
 
+  /// The corner radius of the top of the bottom picker container.
+  /// By default it's 20.
+  final double borderRadius;
+
   /// A predicate that can be used to select which hours are selectable.
   SelectableHourPredicate? hourPredicate;
 
@@ -835,6 +715,7 @@ class BottomPicker extends StatefulWidget {
       context: context,
       isDismissible: dismissable,
       enableDrag: false,
+      barrierColor: barrierColor,
       constraints: BoxConstraints(
         maxWidth: context.bottomPickerWidth,
       ),
@@ -931,9 +812,9 @@ class BottomPickerState extends State<BottomPicker> {
       height: widget.height ?? context.bottomPickerHeight,
       decoration: BoxDecoration(
         color: widget.backgroundColor,
-        borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(20),
-          topLeft: Radius.circular(20),
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(widget.borderRadius),
+          topLeft: Radius.circular(widget.borderRadius),
         ),
       ),
       child: Padding(
@@ -1116,53 +997,41 @@ class BottomPickerState extends State<BottomPicker> {
                                               widget.pickerThemeData,
                                         ),
             ),
-            if (widget.displaySubmitButton)
+            if (widget.buttonBuilder != null)
               Padding(
                 padding: const EdgeInsets.symmetric(
                   vertical: 20,
                 ),
-                child: Row(
-                  mainAxisAlignment: widget.buttonAlignment,
-                  children: [
-                    BottomPickerButton(
-                      onClick: () {
-                        if (widget.bottomPickerType ==
-                            BottomPickerType.rangeDate) {
-                          widget.onRangeDateSubmitPressed?.call(
-                            selectedFirstDateTime,
-                            selectedSecondDateTime,
-                          );
-                        } else if (widget.bottomPickerType ==
-                            BottomPickerType.rangeTime) {
-                          widget.onRangeTimeSubmitPressed?.call(
-                            selectedFirstDateTime,
-                            selectedSecondDateTime,
-                          );
-                        } else if (widget.bottomPickerType ==
-                                BottomPickerType.dateTime ||
-                            widget.bottomPickerType == BottomPickerType.time ||
-                            widget.bottomPickerType == BottomPickerType.year) {
-                          widget.onSubmit?.call(selectedDateTime);
-                        } else if (widget.bottomPickerType ==
-                            BottomPickerType.timer) {
-                          widget.onSubmit?.call(selectedTimerDuration);
-                        } else {
-                          widget.onSubmit?.call(selectedItemIndex);
-                        }
+                child: widget.buttonBuilder!(
+                  context,
+                  () {
+                    if (widget.bottomPickerType == BottomPickerType.rangeDate) {
+                      widget.onRangeDateSubmitPressed?.call(
+                        selectedFirstDateTime,
+                        selectedSecondDateTime,
+                      );
+                    } else if (widget.bottomPickerType ==
+                        BottomPickerType.rangeTime) {
+                      widget.onRangeTimeSubmitPressed?.call(
+                        selectedFirstDateTime,
+                        selectedSecondDateTime,
+                      );
+                    } else if (widget.bottomPickerType ==
+                            BottomPickerType.dateTime ||
+                        widget.bottomPickerType == BottomPickerType.time ||
+                        widget.bottomPickerType == BottomPickerType.year) {
+                      widget.onSubmit?.call(selectedDateTime);
+                    } else if (widget.bottomPickerType ==
+                        BottomPickerType.timer) {
+                      widget.onSubmit?.call(selectedTimerDuration);
+                    } else {
+                      widget.onSubmit?.call(selectedItemIndex);
+                    }
 
-                        if (widget.closeOnSubmit ?? false) {
-                          Navigator.pop(context);
-                        }
-                      },
-                      gradients: widget.gradientColors,
-                      theme: widget.bottomPickerTheme,
-                      buttonPadding: widget.buttonPadding,
-                      buttonWidth: widget.buttonWidth,
-                      solidColor: widget.buttonSingleColor,
-                      buttonChild: widget.buttonContent,
-                      style: widget.buttonStyle,
-                    ),
-                  ],
+                    if (widget.closeOnSubmit ?? false) {
+                      Navigator.pop(context);
+                    }
+                  },
                 ),
               ),
           ],

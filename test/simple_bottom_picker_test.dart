@@ -1,6 +1,5 @@
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:bottom_picker/resources/arrays.dart';
-import 'package:bottom_picker/widgets/bottom_picker_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -92,6 +91,12 @@ void main() {
                 return Text('Item picker');
               },
               items: items,
+              buttonBuilder: (context, onSubmit) {
+                return ElevatedButton(
+                  onPressed: onSubmit,
+                  child: Text('Submit'),
+                );
+              },
               onSubmit: (p0) {
                 index = p0;
               },
@@ -105,7 +110,7 @@ void main() {
         const Offset(0.0, -60.0),
       ); // see top of file
       await tester.pump();
-      await tester.tap(find.byType(BottomPickerButton));
+      await tester.tap(find.text('Submit'));
       await tester.pumpAndSettle();
       expect(index, 2);
 
@@ -124,6 +129,12 @@ void main() {
                 return Text('Item picker');
               },
               items: items,
+              buttonBuilder: (context, onSubmit) {
+                return ElevatedButton(
+                  onPressed: onSubmit,
+                  child: Text('Submit'),
+                );
+              },
               onDismiss: (p0) {
                 index = 9;
               },
@@ -137,7 +148,7 @@ void main() {
         const Offset(0.0, -60.0),
       ); // see top of file
       await tester.pump();
-      await tester.tap(find.byType(BottomPickerButton));
+      await tester.tap(find.text('Submit'));
       await tester.pumpAndSettle();
       expect(index, 9);
 
@@ -191,8 +202,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: BottomPicker(
-              displaySubmitButton: false,
               items: items,
+              // buttonBuilder is null, so no button should be displayed
             ),
           ),
         ),
@@ -200,7 +211,7 @@ void main() {
 
       // Verify that the close button and submit button are not rendered
       expect(find.byType(CloseButton), findsNothing);
-      expect(find.byType(BottomPickerButton), findsNothing);
+      expect(find.text('Submit'), findsNothing);
     });
 
     test('Testing bottom picker assertions', () async {
@@ -219,7 +230,6 @@ void main() {
         () => MaterialApp(
           home: Scaffold(
             body: BottomPicker(
-              displaySubmitButton: false,
               items: [],
             ),
           ),
@@ -233,7 +243,6 @@ void main() {
         () => MaterialApp(
           home: Scaffold(
             body: BottomPicker(
-              displaySubmitButton: false,
               items: items,
               selectedItemIndex: 12,
             ),
@@ -248,7 +257,6 @@ void main() {
         () => MaterialApp(
           home: Scaffold(
             body: BottomPicker(
-              displaySubmitButton: false,
               items: items,
               selectedItemIndex: -4,
             ),
